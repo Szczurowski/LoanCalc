@@ -7,23 +7,26 @@ using Microsoft.Extensions.Logging;
 
 namespace LoanCalc.WebApi.Controllers
 {
-    public class LoanController : ControllerBase
+    public class HousingLoanController : ControllerBase
     {
-        private readonly ILogger<LoanController> _logger;
+        private readonly ILogger<HousingLoanController> _logger;
 
-        public LoanController(ILogger<LoanController> logger)
+        public HousingLoanController(ILogger<HousingLoanController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        [Route("Housing/amount/{amount}/durationMonths/{duration}")]
-        public IActionResult HousingDetails(decimal amount, int duration)
+        [Route("PaymentOverview/amount/{amount}/durationMonths/{duration}")]
+        public IActionResult PaymentOverview(decimal amount, int duration)
         {
+            var actionDesc = GetDescription(amount, duration);
+            _logger.LogInformation($"Called {actionDesc}");
+
             var validationResult = ValidateInput(amount, duration);
             if (validationResult.Count > 0)
             {
-                var resultModel = ResultModel<LoanCalculationModel>.FromValidationErrors(validationResult);
+                var resultModel = ResultModel<PaymentOverviewModel>.FromValidationErrors(validationResult);
                 _logger.LogWarning(resultModel.ValidationErrorMessage);
 
                 return BadRequest(resultModel);
@@ -32,17 +35,16 @@ namespace LoanCalc.WebApi.Controllers
             try
             {
                 // TODO: Implement
-                var loanCalculationModel = new LoanCalculationModel();
+                var loanCalculationModel = new PaymentOverviewModel();
 
-                return Ok(ResultModel<LoanCalculationModel>.FromPayload(loanCalculationModel));
+                return Ok(ResultModel<PaymentOverviewModel>.FromPayload(loanCalculationModel));
             }
             catch (Exception e)
             {
                 var issueReference = Guid.NewGuid();
-                var message = $"Processing of Housing loan with amount {amount}, duration in months {duration} crashed." +
-                              $"Issue reference: {issueReference}";
+                var message = $"Processing of {actionDesc} crashed. Issue reference: {issueReference}";
                 _logger.LogError(e, message);
-                var resultModel = ResultModel<LoanCalculationModel>.FromError(message);
+                var resultModel = ResultModel<PaymentOverviewModel>.FromError(message);
                 
                 return base.StatusCode(StatusCodes.Status500InternalServerError, resultModel);
             }
@@ -70,5 +72,8 @@ namespace LoanCalc.WebApi.Controllers
 
             return result;
         }
+
+        private static string GetDescription(decimal amount, int duration) =>
+            $"{nameof(PaymentOverview)} with amount {amount}, duration in months {duration}";
     }
 }
