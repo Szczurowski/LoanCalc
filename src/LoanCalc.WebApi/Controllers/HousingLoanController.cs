@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using LoanCalc.Engine;
 using LoanCalc.WebApi.Models;
+using LoanCalc.WebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,9 +12,16 @@ namespace LoanCalc.WebApi.Controllers
     public class HousingLoanController : ControllerBase
     {
         private readonly ILogger<HousingLoanController> _logger;
+        private readonly ICalculationEngine _engine;
+        private readonly ILoanConverter _converter;
 
-        public HousingLoanController(ILogger<HousingLoanController> logger)
+        public HousingLoanController(
+            ILogger<HousingLoanController> logger,
+            ICalculationEngine engine,
+            ILoanConverter converter)
         {
+            _converter = converter;
+            _engine = engine;
             _logger = logger;
         }
 
@@ -27,17 +36,17 @@ namespace LoanCalc.WebApi.Controllers
             if (validationResult.Count > 0)
             {
                 var resultModel = ResultModel<PaymentOverviewModel>.FromValidationErrors(validationResult);
-                _logger.LogWarning(resultModel.ValidationErrorMessage);
+                _logger.LogWarning(resultModel.GetValidationErrorMessage());
 
                 return BadRequest(resultModel);
             }
 
             try
             {
-                // TODO: Implement
-                var loanCalculationModel = new PaymentOverviewModel();
+                var paymentOverview = _engine.GeneratePaymentOverview(amount, duration);
+                var paymentOverviewModel = _converter.Convert(paymentOverview);
 
-                return Ok(ResultModel<PaymentOverviewModel>.FromPayload(loanCalculationModel));
+                return Ok(ResultModel<PaymentOverviewModel>.FromPayload(paymentOverviewModel));
             }
             catch (Exception e)
             {

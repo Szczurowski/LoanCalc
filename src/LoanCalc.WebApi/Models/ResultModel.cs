@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace LoanCalc.WebApi.Models
@@ -32,7 +31,7 @@ namespace LoanCalc.WebApi.Models
                 ValidationErrors = validationErrors
             };
 
-        public string ValidationErrorMessage => ValidationErrors?.Aggregate(
+        public string GetValidationErrorMessage() => ValidationErrors?.Aggregate(
             "Validation errors:",
             (result, pair) => $"{result} {pair.Key}:{pair.Value}");
     }

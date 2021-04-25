@@ -1,6 +1,6 @@
-﻿namespace LoanCalc.WebApi.Models
+﻿namespace LoanCalc.Domain
 {
-    public class PaymentOverviewModel
+    public class PaymentOverview
     {
         public decimal AnnualInterestRate { get; set; }
 

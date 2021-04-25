@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalc.WebApi", "LoanCalc.WebApi\LoanCalc.WebApi.csproj", "{5F0A285B-EA6C-4E0C-9DD8-1EB0ACD8480A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCalc.WebApi", "LoanCalc.WebApi\LoanCalc.WebApi.csproj", "{5F0A285B-EA6C-4E0C-9DD8-1EB0ACD8480A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalc.Engine", "LoanCalc.Engine\LoanCalc.Engine.csproj", "{C122EE05-22C8-452C-80D1-CB63889F04B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCalc.Domain", "LoanCalc.Domain\LoanCalc.Domain.csproj", "{6D8F35F3-4914-4171-9778-131333524DF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{5F0A285B-EA6C-4E0C-9DD8-1EB0ACD8480A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F0A285B-EA6C-4E0C-9DD8-1EB0ACD8480A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F0A285B-EA6C-4E0C-9DD8-1EB0ACD8480A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C122EE05-22C8-452C-80D1-CB63889F04B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C122EE05-22C8-452C-80D1-CB63889F04B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C122EE05-22C8-452C-80D1-CB63889F04B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C122EE05-22C8-452C-80D1-CB63889F04B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8F35F3-4914-4171-9778-131333524DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8F35F3-4914-4171-9778-131333524DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8F35F3-4914-4171-9778-131333524DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8F35F3-4914-4171-9778-131333524DF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

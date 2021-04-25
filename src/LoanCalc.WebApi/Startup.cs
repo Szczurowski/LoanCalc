@@ -1,3 +1,5 @@
+using LoanCalc.Engine;
+using LoanCalc.WebApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,11 @@ namespace LoanCalc.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My loan calculation API", Version = "v1" });
             });
+
+            // TODO: move this to dedicated file
+            services.AddSingleton<ILoanEngineConfiguration, WebLoanEngineConfiguration>()
+                .AddSingleton<ILoanConverter, LoanConverter>()
+                .AddScoped<ICalculationEngine, CalculationEngine>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
