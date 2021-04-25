@@ -9,9 +9,9 @@ namespace LoanCalc.WebApi.Services
             entity != null
                 ? new PaymentOverviewModel
                 {
-                    AnnualInterestRate = entity.AnnualInterestRate,
+                    ActualAnnualInterestRate = entity.ActualAnnualInterestRate,
                     MonthlyCost = entity.MonthlyCost,
-                    TotalAdministrativeFees = entity.TotalAdministrativeFees,
+                    TotalAdminFees = entity.TotalAdminFees,
                     TotalInterest = entity.TotalInterest
                 }
                 : null;

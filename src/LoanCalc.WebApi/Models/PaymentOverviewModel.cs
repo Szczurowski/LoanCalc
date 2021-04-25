@@ -2,12 +2,12 @@
 {
     public class PaymentOverviewModel
     {
-        public decimal AnnualInterestRate { get; set; }
+        public decimal ActualAnnualInterestRate { get; set; }
 
         public decimal MonthlyCost { get; set; }
 
         public decimal TotalInterest { get; set; }
 
-        public decimal TotalAdministrativeFees { get; set; }
+        public decimal TotalAdminFees { get; set; }
     }
 }

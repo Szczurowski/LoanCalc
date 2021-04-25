@@ -4,7 +4,7 @@ namespace LoanCalc.Engine
 {
     public interface ILoanEngineConfiguration
     {
-        decimal AnnualInterestRate { get; }
+        decimal AnnualInterestRatePercentage { get; }
 
         InterestRateType InterestRateType { get; }
 

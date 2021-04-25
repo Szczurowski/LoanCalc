@@ -14,7 +14,7 @@ namespace LoanCalc.WebApi.Services
             _configuration = configuration;
         }
 
-        public decimal AnnualInterestRate => GetEngineValue<decimal>("AnnualInterestRate");
+        public decimal AnnualInterestRatePercentage => GetEngineValue<decimal>("AnnualInterestRatePercentage");
 
         public InterestRateType InterestRateType => 
             Enum.Parse<InterestRateType>(GetEngineValue<string>("InterestRateType"), true);
